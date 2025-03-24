@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    command: npm run dev
+    working_dir: /mise-docker
+    volumes:
+      - ./:/mise-docker
