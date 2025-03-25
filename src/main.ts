@@ -1,6 +1,6 @@
 import fastify from 'fastify'
 
-const server = fastify()
+export const server = fastify()
 
 server.get('/health', async () => {
   return { status: 'ok' }
