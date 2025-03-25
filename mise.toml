@@ -1,6 +1,3 @@
 [tools]
-node = "22.0.0"
+node = "22.1.0"
 pnpm= "10.0.0"
-
-[settings]
-trusted_config_paths = ["~/mise-docker"]
