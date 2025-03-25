@@ -6,6 +6,6 @@ services:
     ports:
       - 8080:8080
     command: npm run dev
-    working_dir: /mise-docker
+    working_dir: /home/ubuntu/mise-docker
     volumes:
-      - ./:/mise-docker
+      - ./:/home/ubuntu/mise-docker

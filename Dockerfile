@@ -1,18 +1,21 @@
-FROM debian:12-slim
+FROM ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
 
-RUN apt-get update  \
-    && apt-get -y --no-install-recommends install  \
-        sudo curl git ca-certificates build-essential \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+  && apt-get install -y curl git \
+  && rm -rf /var/lib/apt/lists/*
+
+USER ubuntu
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-ENV MISE_DATA_DIR="/mise"
-ENV MISE_CONFIG_DIR="/mise"
-ENV MISE_CACHE_DIR="/mise/cache"
-ENV MISE_INSTALL_PATH="/usr/local/bin/mise"
-ENV PATH="/mise/shims:$PATH"
 
-RUN curl https://mise.run | sh
+WORKDIR /home/ubuntu
 
-COPY mise.toml /etc/mise/config.toml
+RUN curl -fsSL https://mise.run | sh
+
+ENV MISE_CONFIG_GLOBAL="/home/ubuntu/.config/mise/config.toml"
+ENV PATH="/home/ubuntu/.local/bin:$PATH"
+ENV PATH="/home/ubuntu/.local/share/mise/shims:$PATH"
+
+COPY mise.toml /home/ubuntu/.config/mise/config.toml
+
 RUN mise install
