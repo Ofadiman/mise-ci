@@ -3,7 +3,7 @@
  * @type {import("prettier").Config}
  */
 module.exports = {
-  plugins: ['prettier-plugin-toml'],
+  plugins: ['prettier-plugin-toml', 'prettier-plugin-sh'],
   arrowParens: 'always',
   printWidth: 120,
   quoteProps: 'as-needed',
