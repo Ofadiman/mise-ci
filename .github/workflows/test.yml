@@ -14,5 +14,7 @@ jobs:
         with:
           version: 2025.3.3
           install: true
+      - run: node --version
+      - run: pnpm --version
       - run: pnpm install
       - run: pnpm run test
